@@ -125,7 +125,12 @@ play(Left, Right, -1,Turn):-
     (Turn is 0 ->
     retract(have(Left, Right))
     ;retract(pool(Left,Right)),opponent_play),!.
-
+/*
+"unplay" se utiliza para deshacer una jugada anterior. 
+Si "Turn" es 0, entonces el jugador actual es el que ha realizado la jugada. 
+Si es 1, entonces es el oponente. En cualquiera de los casos, 
+se restauran las fichas de juego y el estado de juego.
+*/
 unplay(Left,Right,0,Turn):-
     end_left(Right),
     retract(end_left(Right)),
